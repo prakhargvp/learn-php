@@ -11,7 +11,8 @@ interface LogInterface
 	public function log($message);
 }
 // inherit interface using implements keyword
-class Table implements TableInterface, LogInterface
+// Countable - PHP Standard interafce
+class Table implements TableInterface, LogInterface, Countable
 {
 	public function save(array $data) {
 		return 'foo';
@@ -20,7 +21,12 @@ class Table implements TableInterface, LogInterface
 	public function log($message) {
 		return $message . "\n";
 	}
+
+	public function count() {
+		return 10;
+	}
 }
 
 echo (new Table())->save([]);
 echo (new Table())->log("interfaces are awesome.");
+echo (new Table())->count();
